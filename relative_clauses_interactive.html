@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relative Clauses — Interactive Practice</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=_DGgZZCDjL6Df81bQ55D5xQ5qFb0I69VSbv89MFlJvJ2e4ISkNL1_ft68d9G0S_zfpv3TRkeWk6XdLqoAZxOXLD29G1eJepeKBsxeki1b97EqaZz7V4QI7Jv8ubD-MKL8hTsWJ7CW9zLe9_Xm6I8Bn2HJpdHD35mTkxFJJWvGi_jWtYZj8aYNP4i8YS2ZLwdkWGfs31w9RmdAh2Ht84HX8fzfgAy-gRRgd4uy682UhCRuLfuH7o56SUYnYTdLlO-sBRUI2ShMfXURowAVEjqA9abT1VIKk2IaTO9P_y8pIaKFh3xVJNQHJbXjtRIt1ufoCrOnXtFfC_-A362Q5nO5A" charset="UTF-8"></script><style>
+:root {
+  --bg:#f4f6fb; --card:#fff; --ink:#172033; --muted:#687287;
+  --accent:#6558d8; --accent2:#eeeafd; --good:#16845b; --bad:#c84b55;
+  --line:#e3e6ef; --shadow:0 12px 35px rgba(31,39,67,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#f7f8fc 0,#eef1f8 100%);color:var(--ink);
+font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+button,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:1100px;margin:auto;padding:34px 20px 60px}
+.hero{background:linear-gradient(135deg,#6659d9,#8378e8);color:white;border-radius:26px;padding:34px;
+box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;right:-80px;top:-100px;background:rgba(255,255,255,.12)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+h1{margin:5px 0 8px;font-size:clamp(30px,5vw,48px);line-height:1.05}
+.hero p{max-width:680px;margin:0;opacity:.9}
+.progress-wrap{margin-top:25px;display:flex;gap:12px;align-items:center}
+.progress{height:8px;background:rgba(255,255,255,.25);border-radius:99px;flex:1;overflow:hidden}
+.progress span{display:block;height:100%;background:white;border-radius:99px;width:0;transition:.35s}
+.progress-text{font-size:13px;white-space:nowrap}
+.tabs{display:flex;gap:8px;margin:24px 0 18px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--card);padding:10px 16px;border-radius:12px;color:var(--muted);font-weight:700}
+.tab.active{background:var(--accent2);color:var(--accent);border-color:#d9d4fb}
+.panel{display:none}
+.panel.active{display:block}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:18px 0}
+.section-head h2{margin:0;font-size:25px}
+.section-head p{margin:4px 0 0;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.match-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:18px}
+.questions{padding:10px 18px}
+.q{display:grid;grid-template-columns:34px 1fr 75px;align-items:center;gap:10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:0}
+.num{color:var(--muted);font-weight:800}
+.q select{width:70px;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.q.correct select{border:2px solid #52b58d;background:#f1fbf7}
+.q.wrong select{border:2px solid #df737b;background:#fff5f5}
+.options{padding:20px}
+.options h3{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.opt:last-child{border:0}
+.letter{font-weight:900;color:var(--accent)}
+.actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.primary,.secondary{border:0;border-radius:12px;padding:11px 16px;font-weight:800}
+.primary{background:var(--accent);color:white}
+.secondary{background:#eef0f6;color:var(--ink)}
+.feedback{font-weight:700}
+.feedback.good{color:var(--good)} .feedback.bad{color:var(--bad)}
+.practice-list{display:grid;gap:12px}
+.item{padding:20px}
+.given{font-weight:700}
+.hint{color:var(--muted);font-weight:500}
+textarea{width:100%;min-height:72px;margin-top:12px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;outline:none}
+textarea:focus,select:focus{border-color:#a69df0;box-shadow:0 0 0 3px #eeeafd}
+.answer{display:none;margin-top:12px;padding:12px 14px;background:#f0faf6;border:1px solid #c9eadc;border-radius:12px;color:#166b4c}
+.answer.show{display:block}
+.answer b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.item.complete textarea{border-color:#6cbd9d}
+.tip{margin-top:18px;padding:16px 18px;border-radius:15px;background:#fff9e8;border:1px solid #f1dfaa;color:#6e5b20}
+.hidden{display:none}
+@media(max-width:760px){
+ .app{padding:18px 12px 40px} .hero{padding:25px 20px;border-radius:20px}
+ .match-grid{grid-template-columns:1fr} .q{grid-template-columns:28px 1fr 62px}
+ .section-head{display:block} .section-head p{margin-top:5px}
+}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="hero">
+  <div class="eyebrow">Grammar practice</div>
+  <h1>Relative Clauses</h1>
+  <p>Practice defining and non-defining relative clauses with instant feedback.</p>
+  <div class="progress-wrap">
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="progress-text" id="progressText">0 / 18</div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Exercises">
+  <button class="tab active" data-tab="p1">01 · Matching</button>
+  <button class="tab" data-tab="p2">02 · Rewrite</button>
+</nav>
+
+<section id="p1" class="panel active">
+  <div class="section-head">
+    <div><h2>Match the information</h2><p>Choose the ending that completes each sentence.</p></div>
+  </div>
+  <div class="match-grid">
+    <div class="card questions" id="ex1"></div>
+    <aside class="card options" id="opts1"><h3>Endings</h3></aside>
+  </div>
+  <div class="actions">
+    <button class="primary" onclick="checkEx1()">Check answers</button>
+    <button class="secondary" onclick="resetEx1()">Reset</button>
+    <span id="fb1" class="feedback"></span>
+  </div>
+</section>
+
+<section id="p2" class="panel">
+  <div class="section-head">
+    <div><h2>Rewrite with a non-defining relative clause</h2><p>Use the hint to complete each sentence. Then reveal the model answer.</p></div>
+  </div>
+  <div class="practice-list" id="ex2"></div>
+  <div class="tip"><strong>Reminder:</strong> Non-defining relative clauses are separated with commas and add extra information rather than identifying the noun.</div>
+</section>
+</main>
+
+<script>
+const ex1data=[{"n":"They've just returned from Cambridge,","a":"f"},{"n":"I spent the weekend with my cousins,","a":"a"},{"n":"They cooked some home-made pizzas,","a":"b"},{"n":"He left the company without telling anybody,","a":"d"},{"n":"Let's get together in the summer,","a":"e"},{"n":"If you want ideas for recipes, talk to Matt,","a":"c"}];
+const ex1opts={"a":"who live in Scotland.","b":"which were delicious.","c":"whose cooking skills are amazing!","d":"which was quite a shock.","e":"when the weather's usually better.","f":"where they had a lovely week's holiday."};
+const ex2data=[{"n":"Thank you for the T-shirt.","h":"lovely!","ans":"Thank you for the T-shirt, which is lovely!"},{"n":"We worked in a small office.","h":"not very comfortable","ans":"We worked in a small office, which wasn't very comfortable."},{"n":"I've got a new boss.","h":"great to work with","ans":"I've got a new boss, who's great to work with."},{"n":"When I told her my plans, she was very understanding.","h":"didn't expect that","ans":"When I told her my plans, she was very understanding, which I didn't expect."},{"n":"My first year has gone really well.","h":"quite a relief","ans":"My first year has gone really well, which is quite a relief."},{"n":"I'm much happier working on my own.","h":"quite surprising","ans":"I'm much happier working on my own, which is quite surprising."},{"n":"He offered everyone a promotion except Dennis.","h":"seems a bit unfair","ans":"He offered everyone a promotion except Dennis, which seems a bit unfair."},{"n":"He sits around all day doing nothing.","h":"drives me crazy","ans":"He sits around all day doing nothing, which drives me crazy."},{"n":"The worst part of the job is over.","h":"really pleased about this","ans":"The worst part of the job is over, which I'm really pleased about."},{"n":"We were delayed on the way to the airport.","h":"I found this really annoying","ans":"We were delayed on the way to the airport, which I found really annoying."},{"n":"She's self-employed now.","h":"quite a big change","ans":"She's self-employed now, which is quite a big change."},{"n":"He never shares his accomplishments with the team.","h":"a shame, honestly","ans":"He never shares his accomplishments with the team, which is a shame, honestly."}];
+let completed=new Set();
+
+function updateProgress(){
+  const total=18;
+  const n=completed.size;
+  document.getElementById('progressBar').style.width=(n/total*100)+'%';
+  document.getElementById('progressText').textContent=n+' / '+total;
+}
+
+function mark(id){completed.add(id);updateProgress()}
+
+const box1=document.getElementById('ex1');
+ex1data.forEach((row,i)=>{
+  const div=document.createElement('div');
+  div.className='q';
+  let opts='<option value="">—</option>';
+  Object.keys(ex1opts).forEach(k=>opts+=`<option value="${k}">${k}</option>`);
+  div.innerHTML=`<span class="num">${i+1}</span><span>${row.n}</span><select id="s1-${i}" aria-label="Answer ${i+1}">${opts}</select>`;
+  box1.appendChild(div);
+});
+
+const optsBox=document.getElementById('opts1');
+Object.keys(ex1opts).forEach(k=>{
+  const d=document.createElement('div'); d.className='opt';
+  d.innerHTML=`<span class="letter">${k}</span><span>${ex1opts[k]}</span>`;
+  optsBox.appendChild(d);
+});
+
+function checkEx1(){
+  let filled=true, correct=0;
+  ex1data.forEach((row,i)=>{
+    const sel=document.getElementById('s1-'+i), q=sel.closest('.q');
+    q.classList.remove('correct','wrong');
+    if(!sel.value){filled=false;return}
+    if(sel.value===row.a){correct++;q.classList.add('correct');mark('m'+i)}
+    else q.classList.add('wrong');
+  });
+  const fb=document.getElementById('fb1');
+  if(!filled){fb.className='feedback bad';fb.textContent='Fill in every answer first.';return}
+  fb.className='feedback '+(correct===ex1data.length?'good':'bad');
+  fb.textContent=correct===ex1data.length?'All correct!':'You got '+correct+' / '+ex1data.length+'. Red answers need another look.';
+}
+function resetEx1(){
+  ex1data.forEach((_,i)=>{const s=document.getElementById('s1-'+i);s.value='';s.closest('.q').className='q';completed.delete('m'+i)});
+  document.getElementById('fb1').textContent='';updateProgress();
+}
+
+const box2=document.getElementById('ex2');
+ex2data.forEach((it,i)=>{
+  const div=document.createElement('article');div.className='card item';
+  div.innerHTML=`<div class="given">${i+1}. ${it.n} <span class="hint">(${it.h})</span></div>
+  <textarea id="t2-${i}" placeholder="Write your sentence here"></textarea>
+  <div class="actions">
+    <button class="primary" onclick="toggleAns(${i})">Show answer</button>
+    <button class="secondary" onclick="clearItem(${i})">Clear</button>
+  </div>
+  <div class="answer" id="a2-${i}"><b>Model answer</b>${it.ans}</div>`;
+  box2.appendChild(div);
+});
+
+function toggleAns(i){
+  const ta=document.getElementById('t2-'+i), box=document.getElementById('a2-'+i), item=ta.closest('.item');
+  if(!ta.value.trim()){
+    ta.focus();ta.style.borderColor='#df737b';return;
+  }
+  ta.style.borderColor='';
+  box.classList.toggle('show');
+  item.classList.add('complete');
+  mark('r'+i);
+}
+function clearItem(i){
+  const ta=document.getElementById('t2-'+i), box=document.getElementById('a2-'+i);
+  ta.value='';ta.style.borderColor='';box.classList.remove('show');
+  completed.delete('r'+i);updateProgress();
+}
+
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');
+}));
+</script>
+</body>
+</html>
